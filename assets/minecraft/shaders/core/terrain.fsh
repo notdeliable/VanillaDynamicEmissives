@@ -22,5 +22,8 @@ void main() {
     vec4 color = texture(Sampler0, texCoord0) * vertexColor * ColorModulator;
     int alpha = int(round(textureLod(Sampler0, texCoord0, 0.0).a * 255.0));
     color = make_emissive(color, lightColor, faceLightColor, alpha);
+	#ifdef ALPHA_CUTOUT
+		if (color.a < ALPHA_CUTOUT) discard;
+	#endif
     fragColor = linear_fog(color, vertexDistance, FogStart, FogEnd, FogColor);
 }

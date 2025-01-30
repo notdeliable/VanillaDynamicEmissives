@@ -91,7 +91,8 @@ vec4 make_emissive(vec4 inputColor, vec4 lightColor, vec4 faceLightColor, int in
     if(face_lighting_check(inputAlpha)) inputColor *= faceLightColor; // Applies the face lighting if the face should be lit
     inputColor.a = remap_alpha(inputAlpha) / 255.0; // Remap the alpha value
 
-    if (inputAlpha == 252) return inputColor; // Checks for alpha 252 and just returns the input color if it is. Used in the example pack for redstone ore and the zombie's eyes.
+    if (inputAlpha == 252 || inputAlpha == 250) return inputColor; // Checks for specific alpha values for cases where no lighting should be applied
+	// and just returns the input color if it is a case like that. Used in the example pack for redstone ore, the zombie's eyes and lime concrete.
     if (inputAlpha == 251) return apply_partial_emissivity(inputColor, lightColor, vec3(0.411, 0.345, 0.388)); // Used in the example pack for ice.
     
     return inputColor * lightColor; // If none of the pixels are supposed to be emissive, then it adds the light.
