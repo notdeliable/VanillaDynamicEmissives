@@ -1,6 +1,6 @@
 {
    "pack": {
-      "pack_format": 46,
+      "pack_format": 81,
       "description": "Allows for dynamic emissive textures in vanilla."
    }
 }

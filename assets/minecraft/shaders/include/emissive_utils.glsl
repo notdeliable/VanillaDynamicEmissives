@@ -97,3 +97,8 @@ vec4 make_emissive(vec4 inputColor, vec4 lightColor, vec4 faceLightColor, int in
     
     return inputColor * lightColor; // If none of the pixels are supposed to be emissive, then it adds the light.
 }
+
+// Adding this since it was removed from minecraft:light.glsl
+vec4 minecraft_sample_lightmap(sampler2D lightMap, ivec2 uv) {
+    return texture(lightMap, clamp(uv / 256.0, vec2(0.5 / 16.0), vec2(15.5 / 16.0)));
+}
